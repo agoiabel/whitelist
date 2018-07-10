@@ -3,10 +3,105 @@
 <head>
 	<base href="/">
 	<title>my app</title>
+
+	<link href="public/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="public/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- NProgress -->
+	<link href="public/vendors/nprogress/nprogress.css" rel="stylesheet">
+	<link href="public/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+	<!-- bootstrap-progressbar -->
+	<link href="public/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+	<!-- JQVMap -->
+	<link href="public/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+	<!-- bootstrap-daterangepicker -->
+	<link href="public/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+	<link href="public/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+	<!-- iCheck -->
+	<!-- Dropzone.js -->
+	<link href="public/vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+	<!-- Custom Theme Style -->
+	<link href="public/vendors/custom.min.css" rel="stylesheet">
+	<style>
+	 .has-error {
+	 	background-color: #f9cfd5;
+	 }
+	 .light {
+	 	-webkit-text-stroke: 1px white;
+	 }
+	</style>
+	<link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet">
+
 	<link rel="stylesheet" type="text/css" href="/public/css/style.css">
 </head>
 <body>
 	<ui-view></ui-view>
+
+
+
+	<script src="public/vendors/jquery/dist/jquery.min.js"></script>
+
+	<!-- Bootstrap -->
+	<script src="public/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- FastClick -->
+	<script src="public/vendors/fastclick/lib/fastclick.js"></script>
+	<!-- NProgress -->
+	<script src="public/vendors/nprogress/nprogress.js"></script>
+	<!-- DateJS -->
+	<script src="public/vendors/DateJS/build/date.js"></script>
+	<!-- ECharts -->
+	<script src="public/vendors/echarts/dist/echarts.min.js"></script>
+	<script src="public/vendors/echarts/map/js/world.js"></script>
+	<script src="public/vendors/moment/min/moment.min.js"></script>
+	<script src="public/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<!-- bootstrap-datetimepicker -->    
+	<script src="public/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+	<!-- Dropzone.js -->
+	<script src="public/vendors/dropzone/dist/min/dropzone.min.js"></script>
+	<!-- iCheck -->
+	<script src="public/vendors/iCheck/icheck.min.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="public/vendors/custom.js"></script>
+
+	<!-- Initialize datetimepicker -->
+	<script>
+	$('#myDatepicker').datetimepicker();
+
+	$('#myDatepicker2').datetimepicker({
+	 format: 'DD.MM.YYYY'
+	});
+
+	$('#myDatepicker3').datetimepicker({
+	 format: 'hh:mm A'
+	});
+
+	$('#myDatepicker4').datetimepicker({
+	 ignoreReadonly: true,
+	 allowInputToggle: true,
+	 format: 'YYYY-MM-DD'
+	});
+
+	$('#myDatepicker7').datetimepicker({
+	 ignoreReadonly: true,
+	 allowInputToggle: true,
+	 format: 'YYYY-MM-DD'
+	});
+
+	$('#datetimepicker6').datetimepicker();
+
+	$('#datetimepicker7').datetimepicker({
+	 useCurrent: false
+	});
+
+	$("#datetimepicker6").on("dp.change", function(e) {
+	 $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+	});
+
+	$("#datetimepicker7").on("dp.change", function(e) {
+	 $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+	});
+	</script>
+
 	<script src="/public/js/script.js"></script>
 </body>
 </html>

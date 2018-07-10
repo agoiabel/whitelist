@@ -9,6 +9,7 @@ const candidateModule = require('./modules/candidate');
 const userModule = require('./modules/user');
 const enumeratorModule = require('./modules/enumerator');
 const dashboardModule = require('./modules/dashboard');
+const securedModule = require('./modules/secured');
 
 const app = angular.module('app', [
 	'ui.router',
@@ -18,37 +19,38 @@ const app = angular.module('app', [
 	'candidateModule',
 	'userModule',
 	'enumeratorModule',
-	'dashboardModule'
+	'dashboardModule',
+	'securedModule'
 
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $qProvider) {
+	
+	$qProvider.errorOnUnhandledRejections(false);
 
 	//switch to html5mode
 	if(window.history && window.history.pushState){
 		$locationProvider.html5Mode(true);
 	}
 
-	$qProvider.errorOnUnhandledRejections(false)
-
 	//define app routes
 	$stateProvider
 		.state('login', require('./modules/auth/route.js').login)
 		.state('signup', require('./modules/auth/route.js').signup)
-		
-		.state('candidate/index', require('./modules/candidate/route.js').index)
-		
-		.state('user/index', require('./modules/user/route.js').index)
-		.state('user/create', require('./modules/user/route.js').create)
 
-		.state('enumerator/index', require('./modules/enumerator/route.js').index)
-		.state('enumerator/create', require('./modules/enumerator/route.js').create)
+		.state('secured', require('./modules/secured/route.js').secured)
 
-		.state('dashboard/index', require('./modules/dashboard/route.js').index)
+		.state('secured.candidate-index', require('./modules/candidate/route.js').index)
+
+		.state('secured.user-index', require('./modules/user/route.js').index)
+		.state('secured.user-create', require('./modules/user/route.js').create)
+		.state('secured.enumerator-index', require('./modules/enumerator/route.js').index)
+		.state('secured.enumerator-create', require('./modules/enumerator/route.js').create)
+		.state('secured.dashboard-index', require('./modules/dashboard/route.js').dashboard)
 
 	$urlRouterProvider.otherwise('/login');
 });
-},{"./modules/auth":3,"./modules/auth/route.js":4,"./modules/candidate":6,"./modules/candidate/route.js":7,"./modules/dashboard":9,"./modules/dashboard/route.js":10,"./modules/enumerator":13,"./modules/enumerator/route.js":14,"./modules/user":17,"./modules/user/route.js":18,"angular":21,"angular-ui-router":19}],2:[function(require,module,exports){
+},{"./modules/auth":3,"./modules/auth/route.js":4,"./modules/candidate":6,"./modules/candidate/route.js":7,"./modules/dashboard":9,"./modules/dashboard/route.js":10,"./modules/enumerator":13,"./modules/enumerator/route.js":14,"./modules/secured":16,"./modules/secured/route.js":17,"./modules/user":20,"./modules/user/route.js":21,"angular":24,"angular-ui-router":22}],2:[function(require,module,exports){
 
 module.exports = function ($scope) {
 	$scope.message = 'Two birds with another stone';
@@ -60,7 +62,7 @@ var authModule = angular.module('authModule', []);
 
 //define controllers
 authModule.controller('authController', require('./controllers/authController'));
-},{"./controllers/authController":2,"angular":21}],4:[function(require,module,exports){
+},{"./controllers/authController":2,"angular":24}],4:[function(require,module,exports){
 /**
  * Route for handling everything authentication
  * 
@@ -87,18 +89,24 @@ var candidateModule = angular.module('candidateModule', []);
 
 //define controllers
 candidateModule.controller('candidateController', require('./controllers/candidateController'));
-},{"./controllers/candidateController":5,"angular":21}],7:[function(require,module,exports){
+},{"./controllers/candidateController":5,"angular":24}],7:[function(require,module,exports){
 /**
  * Route for handling everything authentication
  * 
  * @type 
  */
 module.exports = {
+
 	index: {
-		url: '/candidate/index',
-		controller: 'candidateController',
-		templateUrl: "views/candidate/index.html"
-	}
+		url: "/candidate-index",		
+		views: {
+			"secured-sub-view": {
+				controller: "candidateController",
+				templateUrl: "views/candidate/index.html"
+			}
+		}
+	},
+
 }
 },{}],8:[function(require,module,exports){
 arguments[4][2][0].apply(exports,arguments)
@@ -109,18 +117,24 @@ var dashboardModule = angular.module('dashboardModule', []);
 
 //define controllers
 dashboardModule.controller('dashboardController', require('./controllers/dashboardController'));
-},{"./controllers/dashboardController":8,"angular":21}],10:[function(require,module,exports){
+},{"./controllers/dashboardController":8,"angular":24}],10:[function(require,module,exports){
 /**
  * Route for handling everything authentication
  * 
  * @type 
  */
 module.exports = {
-	index: {
-		url: '/dashboard/index',
-		controller: 'dashboardController',
-		templateUrl: "views/dashboard/index.html"
+
+	dashboard: {
+		url: "/dashboard-index",		
+		views: {
+			"secured-sub-view": {
+				controller: "dashboardController",
+				templateUrl: "views/dashboard/index.html"
+			}
+		}
 	}
+
 }
 },{}],11:[function(require,module,exports){
 arguments[4][2][0].apply(exports,arguments)
@@ -134,29 +148,62 @@ var enumeratorModule = angular.module('enumeratorModule', []);
 //define controllers
 enumeratorModule.controller('enumeratorIndexController', require('./controllers/enumeratorIndexController'));
 enumeratorModule.controller('enumeratorCreateController', require('./controllers/enumeratorCreateController'));
-},{"./controllers/enumeratorCreateController":11,"./controllers/enumeratorIndexController":12,"angular":21}],14:[function(require,module,exports){
+},{"./controllers/enumeratorCreateController":11,"./controllers/enumeratorIndexController":12,"angular":24}],14:[function(require,module,exports){
 /**
  * Route for handling everything authentication
  * 
  * @type 
  */
 module.exports = {
+
 	index: {
-		url: '/enumerator/index',
-		controller: 'enumeratorIndexController',
-		templateUrl: "views/enumerator/index.html"
+		url: "/enumerator-index",		
+		views: {
+			"secured-sub-view": {
+				controller: "enumeratorIndexController",
+				templateUrl: "views/enumerator/index.html"
+			}
+		}
 	},
 	create: {
-		url: '/enumerator/create',
-		controller: 'enumeratorCreateController',
-		templateUrl: "views/enumerator/create.html"
+		url: "/enumerator-create",		
+		views: {
+			"secured-sub-view": {
+				controller: "enumeratorCreateController",
+				templateUrl: "views/enumerator/create.html"
+			}
+		}
 	}
+
 }
 },{}],15:[function(require,module,exports){
 arguments[4][2][0].apply(exports,arguments)
 },{"dup":2}],16:[function(require,module,exports){
+var angular = require('angular');
+
+var securedModule = angular.module('securedModule', []);
+
+//define controllers
+securedModule.controller('securedController', require('./controllers/securedController'));
+
+},{"./controllers/securedController":15,"angular":24}],17:[function(require,module,exports){
+/**
+ * Route for handling everything authentication
+ * 
+ * @type 
+ */
+module.exports = {
+	secured: {
+		abstract: true,
+		controller: 'securedController',
+		templateUrl: "views/secured/index.html"
+	}
+}
+},{}],18:[function(require,module,exports){
 arguments[4][2][0].apply(exports,arguments)
-},{"dup":2}],17:[function(require,module,exports){
+},{"dup":2}],19:[function(require,module,exports){
+arguments[4][2][0].apply(exports,arguments)
+},{"dup":2}],20:[function(require,module,exports){
 var angular = require('angular');
 
 var userModule = angular.module('userModule', []);
@@ -164,28 +211,38 @@ var userModule = angular.module('userModule', []);
 //define controllers
 userModule.controller('userIndexController', require('./controllers/userIndexController'));
 userModule.controller('userCreateController', require('./controllers/userCreateController'));
-},{"./controllers/userCreateController":15,"./controllers/userIndexController":16,"angular":21}],18:[function(require,module,exports){
+},{"./controllers/userCreateController":18,"./controllers/userIndexController":19,"angular":24}],21:[function(require,module,exports){
 /**
  * Route for handling everything authentication
  * 
  * @type 
  */
 module.exports = {
+
 	index: {
-		url: '/user/index',
-		controller: 'userIndexController',
-		templateUrl: "views/user/index.html"
+		url: "/user-index",		
+		views: {
+			"secured-sub-view": {
+				controller: "userIndexController",
+				templateUrl: "views/user/index.html"
+			}
+		}
 	},
 	create: {
-		url: '/user/create',
-		controller: 'userCreateController',
-		templateUrl: "views/user/create.html"
+		url: "/user-create",		
+		views: {
+			"secured-sub-view": {
+				controller: "userCreateController",
+				templateUrl: "views/user/create.html"
+			}
+		}
 	}
+	
 }
-},{}],19:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
- * @version v0.4.2
+ * @version v0.3.2
  * @link http://angular-ui.github.com/
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -588,13 +645,11 @@ function $Resolve(  $q,    $injector) {
       // To complete the overall resolution, we have to wait for the parent
       // promise and for the promise for each invokable in our plan.
       var resolution = $q.defer(),
-          result = silenceUncaughtInPromise(resolution.promise),
+          result = resolution.promise,
           promises = result.$$promises = {},
           values = extend({}, locals),
           wait = 1 + plan.length/3,
           merged = false;
-
-      silenceUncaughtInPromise(result);
           
       function done() {
         // Merge parent values we haven't got yet and publish our own $$values
@@ -674,7 +729,7 @@ function $Resolve(  $q,    $injector) {
           }
         }
         // Publish promise synchronously; invocations further down in the plan may depend on it.
-        promises[key] = silenceUncaughtInPromise(invocation.promise);
+        promises[key] = invocation.promise;
       }
       
       return result;
@@ -750,57 +805,6 @@ function $Resolve(  $q,    $injector) {
 angular.module('ui.router.util').service('$resolve', $Resolve);
 
 
-
-/**
- * @ngdoc object
- * @name ui.router.util.$templateFactoryProvider
- *
- * @description
- * Provider for $templateFactory. Manages which template-loading mechanism to
- * use, and will default to the most recent one ($templateRequest on Angular
- * versions starting from 1.3, $http otherwise).
- */
-function TemplateFactoryProvider() {
-  var shouldUnsafelyUseHttp = angular.version.minor < 3;
-
-  /**
-   * @ngdoc function
-   * @name ui.router.util.$templateFactoryProvider#shouldUnsafelyUseHttp
-   * @methodOf ui.router.util.$templateFactoryProvider
-   *
-   * @description
-   * Forces $templateFactory to use $http instead of $templateRequest. This
-   * might cause XSS, as $http doesn't enforce the regular security checks for
-   * templates that have been introduced in Angular 1.3. Note that setting this
-   * to false on Angular older than 1.3.x will crash, as the $templateRequest
-   * service (and the security checks) are not implemented on these versions.
-   *
-   * See the $sce documentation, section
-   * <a href="https://docs.angularjs.org/api/ng/service/$sce#impact-on-loading-templates">
-   * Impact on loading templates</a> for more details about this mechanism.
-   *
-   * @param {boolean} value
-   */
-  this.shouldUnsafelyUseHttp = function(value) {
-    shouldUnsafelyUseHttp = !!value;
-  };
-
-  /**
-   * @ngdoc object
-   * @name ui.router.util.$templateFactory
-   *
-   * @requires $http
-   * @requires $templateCache
-   * @requires $injector
-   *
-   * @description
-   * Service. Manages loading of templates.
-   */
-  this.$get = ['$http', '$templateCache', '$injector', function($http, $templateCache, $injector){
-    return new TemplateFactory($http, $templateCache, $injector, shouldUnsafelyUseHttp);}];
-}
-
-
 /**
  * @ngdoc object
  * @name ui.router.util.$templateFactory
@@ -812,7 +816,8 @@ function TemplateFactoryProvider() {
  * @description
  * Service. Manages loading of templates.
  */
-function TemplateFactory($http, $templateCache, $injector, shouldUnsafelyUseHttp) {
+$TemplateFactory.$inject = ['$http', '$templateCache', '$injector'];
+function $TemplateFactory(  $http,   $templateCache,   $injector) {
 
   /**
    * @ngdoc function
@@ -884,15 +889,9 @@ function TemplateFactory($http, $templateCache, $injector, shouldUnsafelyUseHttp
   this.fromUrl = function (url, params) {
     if (isFunction(url)) url = url(params);
     if (url == null) return null;
-    else {
-      if(!shouldUnsafelyUseHttp) {
-        return $injector.get('$templateRequest')(url);
-      } else {
-        return $http
-          .get(url, { cache: $templateCache, headers: { Accept: 'text/html' }})
-          .then(function(response) { return response.data; });
-      }
-    }
+    else return $http
+        .get(url, { cache: $templateCache, headers: { Accept: 'text/html' }})
+        .then(function(response) { return response.data; });
   };
 
   /**
@@ -915,7 +914,7 @@ function TemplateFactory($http, $templateCache, $injector, shouldUnsafelyUseHttp
   };
 }
 
-angular.module('ui.router.util').provider('$templateFactory', TemplateFactoryProvider);
+angular.module('ui.router.util').service('$templateFactory', $TemplateFactory);
 
 var $$UMFP; // reference to $UrlMatcherFactoryProvider
 
@@ -1529,7 +1528,7 @@ function $UrlMatcherFactory() {
     "int": {
       encode: valToString,
       decode: function(val) { return parseInt(val, 10); },
-      is: function(val) { return val !== undefined && val !== null && this.decode(val.toString()) === val; },
+      is: function(val) { return isDefined(val) && this.decode(val.toString()) === val; },
       pattern: /\d+/
     },
     "bool": {
@@ -3652,7 +3651,6 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
         return $q.reject(error);
       });
 
-      silenceUncaughtInPromise(transition);
       return transition;
     };
 
@@ -3696,11 +3694,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
 
       if (!isDefined(state)) { return undefined; }
       if ($state.$current !== state) { return false; }
-
-      return !params || objectKeys(params).reduce(function(acc, key) {
-        var paramDef = state.params[key];
-        return acc && !paramDef || paramDef.type.equals($stateParams[key], params[key]);
-      }, true);
+      return params ? equalForKeys(state.params.$$values(params), $stateParams) : true;
     };
 
     /**
@@ -3776,10 +3770,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
         }
       }
 
-      return objectKeys(params).reduce(function(acc, key) {
-        var paramDef = state.params[key];
-        return acc && !paramDef || paramDef.type.equals($stateParams[key], params[key]);
-      }, true);
+      return true;
     };
 
 
@@ -4356,21 +4347,12 @@ function $ViewDirectiveFill (  $compile,   $controller,   $state,   $interpolate
     priority: -400,
     compile: function (tElement) {
       var initial = tElement.html();
-      if (tElement.empty) {
-        tElement.empty();
-      } else {
-        // ng 1.0.0 doesn't have empty(), which cleans up data and handlers
-        tElement[0].innerHTML = null;
-      }
-
       return function (scope, $element, attrs) {
         var current = $state.$current,
             name = getUiViewName(scope, attrs, $element, $interpolate),
             locals  = current && current.locals[name];
 
         if (! locals) {
-          $element.html(initial);
-          $compile($element.contents())(scope);
           return;
         }
 
@@ -4867,7 +4849,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],20:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 /**
  * @license AngularJS v1.7.2
  * (c) 2010-2018 Google, Inc. http://angularjs.org
@@ -40304,8 +40286,8 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],21:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":20}]},{},[1]);
+},{"./angular":23}]},{},[1]);

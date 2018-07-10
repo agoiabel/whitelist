@@ -4,9 +4,15 @@
  * @type 
  */
 module.exports = {
-	index: {
-		url: '/dashboard/index',
-		controller: 'dashboardController',
-		templateUrl: "views/dashboard/index.html"
+
+	dashboard: {
+		url: "/dashboard-index",		
+		views: {
+			"secured-sub-view": {
+				controller: "dashboardController",
+				templateUrl: "views/dashboard/index.html"
+			}
+		}
 	}
+
 }

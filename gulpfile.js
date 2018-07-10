@@ -24,6 +24,7 @@ gulp.task('sass', function () {
 			.pipe(gulp.dest('public/css'))
 });
 
+
 gulp.task('watch', function () {
 	gulp.watch('app/**/*.js', ['browserify']);
 	gulp.watch('app/sass/**/*.sass', ['sass']);

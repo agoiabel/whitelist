@@ -4,9 +4,15 @@
  * @type 
  */
 module.exports = {
+
 	index: {
-		url: '/candidate/index',
-		controller: 'candidateController',
-		templateUrl: "views/candidate/index.html"
-	}
+		url: "/candidate-index",		
+		views: {
+			"secured-sub-view": {
+				controller: "candidateController",
+				templateUrl: "views/candidate/index.html"
+			}
+		}
+	},
+
 }

@@ -1,1 +1,230 @@
-Candidate Index View
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Candidates </h3>
+      </div>
+
+
+      <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+          <div class="input-group" style="float: right">
+            <button type="button" class="btn btn-default toggle_an_element" data-placement="bottom" dir="filter_for_dashboard">
+                Filter
+            </button>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+
+
+
+
+     <div class="x_panel" style="display: none " id="filter_for_dashboard">
+      
+      <div class="x_content">
+
+        <div class="row">
+
+
+          <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+            Enumerator
+            <select class="form-control">
+              <option value="">-- Enumerator --</option>
+            </select>
+          </div>
+
+          
+          <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+            Status
+            <select class="form-control">
+              <option value="">-- Select --</option>
+              
+            </select>
+          </div>
+
+
+          <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+            State
+            <select class="form-control">
+              <option value="">-- Select --</option>
+              <option>Abia</option>
+              <option>Adamawa</option>
+            </select>
+          </div>
+
+          <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+            L.G.A.
+            <select class="form-control">
+              <option value="">-- L.G.A. --</option>
+            </select>
+          </div>
+
+          
+
+          <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+            Gender
+            <select class="form-control">
+              <option value="">-- Choose --</option>
+            </select>
+          </div>
+
+          <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+            Trade Type
+            <select class="form-control">
+              <option value="">-- Choose --</option>
+            </select>
+          </div>
+
+
+
+          <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+            Date of Submission<br>
+
+            <div id="reportrange" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+              <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+              <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+            </div>
+
+          </div>
+
+
+
+          <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+            Date of Submission<br>
+
+            <div id="reportrange" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+              <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+              <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+            </div>
+
+          </div>
+
+
+
+          <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+            Date of Verification<br>
+
+            <div id="reportrange" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+              <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+              <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+            </div>
+
+          </div>
+
+          <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+            Date of Disbursement<br>
+
+            <div id="reportrange" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+              <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+              <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+            </div>
+
+          </div>
+
+
+          
+
+          <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+            .<br>
+            <button type="submit" class="btn btn-success">Go</button>
+          </div>
+
+
+          
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+     
+
+      <div class="clearfix"></div>
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          
+          <br>
+
+          <div class="x_content">
+
+            
+
+             <div class="table-responsive">
+              <table class="table table-striped jambo_table bulk_action">
+                <thead>
+                  <tr class="headings">
+                    <th>
+                      <input type="checkbox" id="check-all" class="flat">
+                    </th>
+                    <th class="column-title">S/N </th>
+                    <th class="column-title">Tradermoni ID </th>
+                    <th class="column-title">Status </th>
+                    <th class="column-title">Lastname </th>
+                    <th class="column-title">Firstname </th>
+                    
+                    <th class="column-title">Gender </th>
+                    <th class="column-title">Phone No.</th>
+                    <th class="column-title">Trade Type</th>
+                    <th class="column-title">State</th>
+                    <th class="column-title">LGA</th>
+                    <th class="column-title">Enumerator </th>
+                    <th class="column-title">Action</th>
+                   
+                    <!--th class="column-title no-link last"><span class="nobr">Action</span>
+                    </th-->
+                    <th class="bulk-actions" colspan="12">
+                      <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                   <tr class="even pointer">
+                    <td class="a-center ">
+                      <input type="checkbox" class="flat" name="table_records">
+                    </td>
+                    <td class=" ">1</td>
+                    <td class=" ">BN-AB-123456</td>
+                    <td class=" ">Unverified</td>
+                    <td class=" ">Mamodu</td>
+                    <td class=" ">Oja </td>
+                    
+                    <td class=" ">Male</td>
+                    <td class=" ">09067689094</td>
+                    <td class=" ">Shoe sales</td>
+                    <td class=" ">Abia</td>
+                    <td class=" ">Isiala Ngwa</td>
+                    <td class=" ">nil</td>
+                    <td class=" "><a href="candidate_details.html">More</a></td>
+                  </tr>
+                  
+                  
+                </tbody>
+              </table>
+
+
+              <nav aria-label="..."><ul class="pagination"><li class="page-item active"><span class="page-link">1<span class="sr-only">(current)</span></span><li class="page-item"><a href="#">2</a></li><li class="page-item"><a href="#">&gt;</a></li></ul></nav>
+
+
+            </div>
+					
+				
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->

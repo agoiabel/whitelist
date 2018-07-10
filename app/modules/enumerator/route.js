@@ -4,14 +4,24 @@
  * @type 
  */
 module.exports = {
+
 	index: {
-		url: '/enumerator/index',
-		controller: 'enumeratorIndexController',
-		templateUrl: "views/enumerator/index.html"
+		url: "/enumerator-index",		
+		views: {
+			"secured-sub-view": {
+				controller: "enumeratorIndexController",
+				templateUrl: "views/enumerator/index.html"
+			}
+		}
 	},
 	create: {
-		url: '/enumerator/create',
-		controller: 'enumeratorCreateController',
-		templateUrl: "views/enumerator/create.html"
+		url: "/enumerator-create",		
+		views: {
+			"secured-sub-view": {
+				controller: "enumeratorCreateController",
+				templateUrl: "views/enumerator/create.html"
+			}
+		}
 	}
+
 }
