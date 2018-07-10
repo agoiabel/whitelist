@@ -1,0 +1,29 @@
+{
+  "name": "angularjs-starter",
+  "version": "1.0.0",
+  "description": "help builds the process handling starter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "starter",
+    "kit",
+    "angularjs"
+  ],
+  "author": "abel agoi",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "connect-modrewrite": "^0.10.1",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-ruby-sass": "^2.1.1",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.7",
+    "angular": "^1.6.6",
+    "angular-ui-router": "0.4.2"
+  }
+}
